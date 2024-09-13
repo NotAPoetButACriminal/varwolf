@@ -3,7 +3,7 @@ FROM ubuntu:24.04
 WORKDIR /root
 
 # Update the system
-RUN apt-get update
+RUN apt-get update && apt-get upgrade
 
 # Install system requirements
 RUN apt-get install -y \
