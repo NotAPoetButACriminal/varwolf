@@ -9,10 +9,11 @@ RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y \
     wget \
     zip \
+    git \
+    python3 \
     openjdk-17-jdk \
     perl \
-    perl-base \
-    git
+    perl-base
 
 # Install bioinformatics packages
 RUN apt-get install -y \
