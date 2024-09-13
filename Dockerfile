@@ -7,7 +7,9 @@ RUN apt-get update && apt-get -y upgrade
 
 # Install system requirements
 RUN apt-get install -y \
-    default-jre \
+    wget \
+    zip \
+    openjdk-17-jdk \
     perl \
     perl-base \
     git
@@ -18,6 +20,11 @@ RUN apt-get install -y \
     samtools \
     bcftools \
     tabix
+
+# Install GATK
+RUN wget https://github.com/broadinstitute/gatk/releases/download/4.6.0.0/gatk-4.6.0.0.zip && \
+    unzip gatk-4.6.0.0.zip
+
 
 # Copy local files
 COPY bamshee.sh /root
