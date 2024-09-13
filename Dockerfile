@@ -11,6 +11,7 @@ RUN apt-get install -y \
     zip \
     git \
     python3 \
+    python-is-python3 \
     openjdk-17-jdk \
     perl \
     perl-base
