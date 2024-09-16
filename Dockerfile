@@ -7,6 +7,7 @@ RUN apt-get update && apt-get -y upgrade
 
 # Install system requirements
 RUN apt-get install -y \
+    build-essential \
     wget \
     zip \
     git \
