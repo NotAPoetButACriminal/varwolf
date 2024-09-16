@@ -24,10 +24,13 @@ RUN apt-get install -y \
     bcftools \
     tabix
 
+# Clean the packages
+RUN apt-get autoremove && \
+    apt-get clean
+
 # Install GATK
 RUN wget https://github.com/broadinstitute/gatk/releases/download/4.6.0.0/gatk-4.6.0.0.zip && \
     unzip gatk-4.6.0.0.zip
-
 
 # Copy local files
 COPY bamshee.sh /root
