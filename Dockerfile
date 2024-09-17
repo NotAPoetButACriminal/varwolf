@@ -30,8 +30,14 @@ RUN apt-get autoremove && \
 
 # Install GATK
 RUN wget https://github.com/broadinstitute/gatk/releases/download/4.6.0.0/gatk-4.6.0.0.zip && \
-    unzip gatk-4.6.0.0.zip
+    unzip gatk-4.6.0.0.zip && \
+    rm gatk-4.6.0.0.zip
 ENV PATH="${PATH}:/root/gatk-4.6.0.0"
+
+# Install VEP
+RUN git clone https://github.com/Ensembl/ensembl-vep.git && \
+    cd ensembl-vep && \
+    perl INSTALL.pl 
 
 # Copy local files
 COPY bamshee.sh /root
