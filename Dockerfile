@@ -15,7 +15,8 @@ RUN apt-get install -y \
     python-is-python3 \
     openjdk-17-jdk \
     perl \
-    perl-base
+    perl-base \
+    cpanminus
 
 # Install bioinformatics packages
 RUN apt-get install -y \
