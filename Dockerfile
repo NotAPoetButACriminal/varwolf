@@ -37,9 +37,9 @@ ENV PATH="${PATH}:/root/gatk-4.6.0.0"
 
 # Install VEP
 RUN git clone https://github.com/Ensembl/ensembl-vep.git && \
-    cd ensembl-vep && \
-    cpanm --installdeps --with-recommends --notest --cpanfile ensembl_cpanfile . && \
-    perl INSTALL.pl -a a
+    cd ensembl-vep
+#    cpanm --installdeps --with-recommends --notest --cpanfile ensembl_cpanfile . && \
+#    perl INSTALL.pl -a a
 
 # Copy local files
 COPY bamshee.sh /root
