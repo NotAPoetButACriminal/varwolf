@@ -15,18 +15,7 @@ RUN apt-get install -y \
     python-is-python3 \
     openjdk-17-jdk \
     perl \
-    perl-base \
-    cpanminus \
-    zlib1g-dev \
-    libexpat1-dev \
-    libmysqlclient-dev \
-    libdbd-mysql-perl \
-    libpng-dev \
-    libssl-dev \
-    libbz2-dev \
-    liblzma-dev \
-    locales \
-    openssl
+    perl-base
 
 # Install bioinformatics packages
 RUN apt-get install -y \
@@ -45,15 +34,33 @@ RUN wget https://github.com/broadinstitute/gatk/releases/download/4.6.0.0/gatk-4
     rm gatk-4.6.0.0.zip
 ENV PATH="${PATH}:/root/gatk-4.6.0.0"
 
-# Install VEP
+# Install VEP dependencies
+RUN apt-get install -y \
+    cpanminus \
+    zlib1g-dev \
+    libexpat1-dev \
+    libmysqlclient-dev \
+    libdbd-mysql-perl \
+    libpng-dev \
+    libssl-dev \
+    libbz2-dev \
+    liblzma-dev \
+    locales \
+    openssl \
+    libxml2-dev \
+    libxml2-perl \
+    libxml2-libxml2-perl
+
+# Install VEP 
 RUN git clone https://github.com/Ensembl/ensembl-vep.git && \
     cd ensembl-vep && \
+    wget https://raw.githubusercontent.com/Ensembl/ensembl/main/cpanfile && \
+    cpanm --installdeps --with-recommends --notest --cpanfile cpanfile.1 . && \
     cpanm --installdeps --with-recommends --notest --cpanfile cpanfile . && \
     perl INSTALL.pl -a a
 
 # Copy local files
 COPY bamshee.sh /root
-
 COPY cohortcrawler.sh /root
 
 # Test
