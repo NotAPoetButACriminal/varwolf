@@ -48,8 +48,8 @@ RUN apt-get install -y \
     locales \
     openssl \
     libxml2-dev \
-    libxml2-perl \
-    libxml2-libxml2-perl
+    libxml-perl \
+    libxml-libxml-perl
 
 # Install VEP 
 RUN git clone https://github.com/Ensembl/ensembl-vep.git && \
