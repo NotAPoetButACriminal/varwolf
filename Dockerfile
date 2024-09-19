@@ -16,7 +16,17 @@ RUN apt-get install -y \
     openjdk-17-jdk \
     perl \
     perl-base \
-    cpanminus
+    cpanminus \
+    zlib1g-dev \
+    libexpat1-dev \
+    libmysqlclient-dev \
+    libdbd-mysql-perl \
+    libpng-dev \
+    libssl-dev \
+    libbz2-dev \
+    liblzma-dev \
+    locales \
+    openssl
 
 # Install bioinformatics packages
 RUN apt-get install -y \
@@ -37,12 +47,13 @@ ENV PATH="${PATH}:/root/gatk-4.6.0.0"
 
 # Install VEP
 RUN git clone https://github.com/Ensembl/ensembl-vep.git && \
-    cd ensembl-vep
-#    cpanm --installdeps --with-recommends --notest --cpanfile ensembl_cpanfile . && \
-#    perl INSTALL.pl -a a
+    cd ensembl-vep && \
+    cpanm --installdeps --with-recommends --notest --cpanfile cpanfile . && \
+    perl INSTALL.pl -a a
 
 # Copy local files
 COPY bamshee.sh /root
+
 COPY cohortcrawler.sh /root
 
 # Test
