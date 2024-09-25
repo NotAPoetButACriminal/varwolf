@@ -44,8 +44,7 @@ perl /root/ensembl-vep/INSTALL.pl \
 
 apt install pipx
 pipx install gdown
+PATH="/root/.local/bin/:${PATH}"
 gdown --id 1L_YQ7lXKMLd5n_jHsSQAEobZdQ-ZvU6Y
 tar -xvf custom_files.tar.gz
 rm custom_files.tar.gz
-
-cd /root/
