@@ -57,14 +57,15 @@ RUN git clone https://github.com/Ensembl/ensembl-vep.git && \
     wget https://raw.githubusercontent.com/Ensembl/ensembl/main/cpanfile && \
     cpanm --installdeps --with-recommends --notest --cpanfile cpanfile.1 . && \
     cpanm --installdeps --with-recommends --notest --cpanfile cpanfile . && \
-    perl INSTALL.pl -a a && \
+    perl INSTALL.pl -a ap -g AlphaMissense,SpliceAI && \
     make install -C htslib && rm -f Makefile *.c && \
     cpanm --verbose Bio::DB::HTS
 ENV PATH="${PATH}:/root/ensembl-vep"
 
 # Copy local files
-COPY bamshee.sh /root
-COPY cohortcrawler.sh /root
+COPY bamshee.sh /root/
+COPY cohortcrawler.sh /root/
+COPY database_install.sh /root/
 
 # Test
-CMD java --version
+CMD vep
