@@ -53,6 +53,7 @@ RUN apt-get install -y \
     libxml-perl \
     libxml-libxml-perl
 
+# Install htslib for Bio::DB::HTS
 RUN git clone https://github.com/samtools/htslib.git && \
     cd htslib && \
     git submodule update --init --recursive && \
@@ -78,4 +79,4 @@ COPY database_install.sh /root/
 COPY varannosaur.sh /root/
 
 # Test
-CMD vep
+CMD echo "Run 'docker run -v /path/to/local/directory/:/root/db/ database_install.sh' to get the required annotation files."
