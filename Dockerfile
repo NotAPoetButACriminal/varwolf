@@ -21,8 +21,7 @@ RUN apt-get install -y \
 RUN apt-get install -y \
     bwa \
     samtools \
-    bcftools \
-    tabix
+    bcftools
 
 # Clean the packages
 RUN apt-get autoremove && \
@@ -45,11 +44,16 @@ RUN apt-get install -y \
     libssl-dev \
     libbz2-dev \
     liblzma-dev \
+    libcurl4-gnutls-dev \
+    libdeflate-dev \
     locales \
     openssl \
     libxml2-dev \
     libxml-perl \
     libxml-libxml-perl
+
+RUN git clone https://github.com/samtools/htslib.git && \
+    make install -C htslib && rm -f Makefile *.c
 
 # Install VEP 
 RUN git clone https://github.com/Ensembl/ensembl-vep.git && \
