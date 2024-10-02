@@ -11,6 +11,7 @@ RUN apt-get install -y \
     wget \
     zip \
     git \
+    autoconf \
     python3 \
     python-is-python3 \
     openjdk-17-jdk \
@@ -53,7 +54,12 @@ RUN apt-get install -y \
     libxml-libxml-perl
 
 RUN git clone https://github.com/samtools/htslib.git && \
-    make install -C htslib && rm -f Makefile *.c
+    cd htslib && \
+    git submodule update --init --recursive && \
+    autoreconf -i && \
+    ./configure && \
+    make && \
+    make install
 
 # Install VEP 
 RUN git clone https://github.com/Ensembl/ensembl-vep.git && \
