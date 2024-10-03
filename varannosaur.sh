@@ -38,7 +38,7 @@ vep \
 	--pubmed \
 	--check_existing \
 	--distance 500 \
-	--custom file=/root/${SAMPLE}.ADinINFO.vcf.gz,short_name=VCF,format=vcf,type=exact,fields=AD \
+	--custom file=/root/${SAMPLE}.ADinINFO.vcf.gz,short_name=VCF,format=vcf,type=exact,fields=GT,AD \
 	--custom file=/root/db/vep_files/G2P.bed.gz,short_name=G2P,format=bed,type=overlap \
 	--custom file=/root/db/vep_files/clingen.bed.gz,short_name=ClinGen,format=bed,type=overlap \
 	--custom file=/root/db/vep_files/OMIM.bed.gz,short_name=OMIM,format=bed,type=overlap \
@@ -46,4 +46,4 @@ vep \
 	--custom file=/root/db/vep_files/clinvar_20240528.vcf.gz,short_name=ClinVar,format=vcf,type=exact,fields=CLNDN%CLNSIG%CLNREVSTAT \
 	--plugin AlphaMissense,file=/root/db/vep_files/AlphaMissense_hg38_fixed.tsv.gz \
 	--plugin SpliceAI,snv=/root/db/vep_files/spliceai_filtered_edited.snv.hg38.vcf.gz,indel=/root/db/vep_files/spliceai_filtered_edited.snv.hg38.vcf.gz \
-	--fields "Uploaded_variation,Existing_variation,VCF_FILTER,VCF_AD,HGVSc,HGVSp,SYMBOL,OMIM,Orphanet,ClinGen,G2P,EXON,INTRON,Consequence,IMPACT,BIOTYPE,SIFT,PolyPhen,am_class,SpliceAI_pred,gnomADg_AF,gnomADg_AFR_AF,gnomADg_AMI_AF,gnomADg_AMR_AF,gnomADg_ASJ_AF,gnomADg_EAS_AF,gnomADg_FIN_AF,gnomADg_MID_AF,gnomADg_NFE_AF,gnomADg_OTH_AF,gnomADg_SAS_AF,ClinVar_CLNDN,ClinVar_CLNSIG,ClinVar_CLNREVSTAT,PUBMED"
+	--fields "Uploaded_variation,Existing_variation,VCF_FILTER,VCF_GT,VCF_AD,HGVSc,HGVSp,SYMBOL,OMIM,Orphanet,ClinGen,G2P,EXON,INTRON,Consequence,IMPACT,BIOTYPE,SIFT,PolyPhen,am_class,SpliceAI_pred,gnomADg_AF,gnomADg_AFR_AF,gnomADg_AMI_AF,gnomADg_AMR_AF,gnomADg_ASJ_AF,gnomADg_EAS_AF,gnomADg_FIN_AF,gnomADg_MID_AF,gnomADg_NFE_AF,gnomADg_OTH_AF,gnomADg_SAS_AF,ClinVar_CLNDN,ClinVar_CLNSIG,ClinVar_CLNREVSTAT,PUBMED"
