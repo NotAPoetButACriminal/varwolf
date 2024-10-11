@@ -1,6 +1,6 @@
 # Lunix
 FROM ubuntu:24.04
-WORKDIR /root/varwolf/
+WORKDIR /root/
 
 # Update the system
 RUN apt-get update && apt-get -y upgrade
@@ -72,5 +72,6 @@ RUN git clone https://github.com/Ensembl/ensembl-vep.git && \
     perl INSTALL.pl -a ap -g AlphaMissense,SpliceAI --no_htslib
 ENV PATH="${PATH}:/root/ensembl-vep"
 
+WORKDIR /root/varwolf/
 # Test
-CMD echo "Run 'docker run -v /path/to/local/directory/:/root/db/ -it --rm database_install.sh' to get the required annotation files."
+CMD vep
