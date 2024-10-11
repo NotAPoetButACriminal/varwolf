@@ -1,6 +1,6 @@
 # Lunix
 FROM ubuntu:24.04
-WORKDIR /root
+WORKDIR /root/varwolf/
 
 # Update the system
 RUN apt-get update && apt-get -y upgrade
