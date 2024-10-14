@@ -36,7 +36,7 @@ tabix Homo_sapiens_assembly38.dbsnp138.vcf.gz
 
 mkdir -p /root/varwolf/db/vep_files/ && cd /root/varwolf/db/vep_files/
 
-perl /root/varwolf/ensembl-vep/INSTALL.pl \
+perl /root/ensembl-vep/INSTALL.pl \
     -a c \
     -s Homo_sapiens_refseq \
     -y GRCh38 \
