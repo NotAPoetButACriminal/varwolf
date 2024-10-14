@@ -32,7 +32,7 @@ RUN apt-get autoremove && \
 RUN wget https://github.com/broadinstitute/gatk/releases/download/4.6.0.0/gatk-4.6.0.0.zip && \
     unzip gatk-4.6.0.0.zip && \
     rm gatk-4.6.0.0.zip
-ENV PATH="${PATH}:/root/gatk-4.6.0.0"
+ENV PATH="${PATH}:/root/gatk-4.6.0.0/"
 
 # Install VEP dependencies
 RUN apt-get install -y \
@@ -70,8 +70,9 @@ RUN git clone https://github.com/Ensembl/ensembl-vep.git && \
     cpanm --installdeps --with-recommends --notest --cpanfile cpanfile . && \
     cpanm --verbose Bio::DB::HTS && \
     perl INSTALL.pl -a ap -g AlphaMissense,SpliceAI --no_htslib
-ENV PATH="${PATH}:/root/ensembl-vep"
+ENV PATH="${PATH}:/root/ensembl-vep/"
 
 WORKDIR /root/varwolf/
+ENV PATH="${PATH}:/root/varwolf/"
 # Test
 CMD vep

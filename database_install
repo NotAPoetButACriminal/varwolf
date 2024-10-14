@@ -2,7 +2,7 @@
 
 set -eu
 
-read -p "This scirpt will download around 40Gb of data, make sure you are using the flag -v /path/to/local/directory/:/root/db/ with docker run to have the files saved locally for use next time. Continue (y/n)?" CHOICE
+read -p "This scirpt will download around 40Gb of data, make sure you are running it using <docker run --rm -itv /path/to/varwolf/:/root/varwolf/ varwolf:latest database_install> to have the files saved locally for future use. Continue (y/n)?" CHOICE
 case "$CHOICE" in 
   y|Y ) echo "Downloading...";;
   n|N ) exit;;
@@ -11,7 +11,7 @@ esac
 
 # Get GATK resource bundle files
 
-mkdir -p /root/db/refs/ && cd /root/db/refs/
+mkdir -p /root/varwolf/db/refs/ && cd /root/varwolf/db/refs/
 
 wget https://storage.googleapis.com/genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.dict
 wget https://storage.googleapis.com/genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta
@@ -34,17 +34,18 @@ tabix Homo_sapiens_assembly38.dbsnp138.vcf.gz
 
 # Download vep cache and custom files
 
-mkdir -p /root/db/vep_files/ && cd /root/db/vep_files/
+mkdir -p /root/varwolf/db/vep_files/ && cd /root/varwolf/db/vep_files/
 
-perl /root/ensembl-vep/INSTALL.pl \
+perl /root/varwolf/ensembl-vep/INSTALL.pl \
     -a c \
     -s Homo_sapiens_refseq \
     -y GRCh38 \
-    -c /root/db/vep_files/
+    -c /root/varwolf/db/vep_files/
 
 apt install pipx
 pipx install gdown
-PATH="/root/.local/bin/:${PATH}"
+PATH="/root/varwolf/.local/bin/:${PATH}"
 gdown --id 1L_YQ7lXKMLd5n_jHsSQAEobZdQ-ZvU6Y
 tar -xvf custom_files.tar.gz
 rm custom_files.tar.gz
+mkdir -p /root/varwolf/input/
